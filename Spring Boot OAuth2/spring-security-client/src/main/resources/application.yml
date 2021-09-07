@@ -1,0 +1,27 @@
+server:
+  port: 8082
+  context-path: /ui
+  session:
+    cookie:
+      name: UISESSION
+
+
+security:
+  basic:
+    enabled: false  # we disable the security because we have already overrided the security methods
+  oauth2:
+    client:
+      # provide the client identification registered in Authentication server
+      clientId: ClientId
+      clientSecret: secret
+      accessTokenUri: http://localhost:8081/auth/oauth/token
+      #resource url
+      userAuthorizationUri: http://localhost:8081/auth/oauth/authorize
+    resource:
+    # you can use instead :  userInfoUri: http://localhost:8081/auth/rest/hello to see other difference
+      userInfoUri: http://localhost:8081/auth/rest/hello/principal
+      
+
+spring:
+  thymeleaf:
+    cache: false
